@@ -1,0 +1,290 @@
+ARM GAS  C:\Users\dns\AppData\Local\Temp\ccqhz1k5.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"init.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "Core/Src/init.c"
+  20              		.section	.text.GPIO_Init_Memory,"ax",%progbits
+  21              		.align	1
+  22              		.global	GPIO_Init_Memory
+  23              		.syntax unified
+  24              		.thumb
+  25              		.thumb_func
+  27              	GPIO_Init_Memory:
+  28              	.LFB130:
+   1:Core/Src/init.c **** #include "init.h"
+   2:Core/Src/init.c **** //Пин PA3 LED1
+   3:Core/Src/init.c **** void GPIO_Init_Memory() {
+  29              		.loc 1 3 25 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		@ link register save eliminated.
+   4:Core/Src/init.c ****     *(uint32_t *)(0x40023800UL + 0x30UL) |= 0x01UL; // Включение тактирования 
+  34              		.loc 1 4 5 view .LVU1
+  35 0000 0A4A     		ldr	r2, .L2
+  36 0002 D2F83038 		ldr	r3, [r2, #2096]
+  37              		.loc 1 4 42 is_stmt 0 view .LVU2
+  38 0006 43F00103 		orr	r3, r3, #1
+  39 000a C2F83038 		str	r3, [r2, #2096]
+   5:Core/Src/init.c ****     *(uint32_t *)(0x40020000UL + 0x00UL) |= 0x40UL; // Настройка пина PA3 на реж�
+  40              		.loc 1 5 5 is_stmt 1 view .LVU3
+  41 000e 084B     		ldr	r3, .L2+4
+  42 0010 1A68     		ldr	r2, [r3]
+  43              		.loc 1 5 42 is_stmt 0 view .LVU4
+  44 0012 42F04002 		orr	r2, r2, #64
+  45 0016 1A60     		str	r2, [r3]
+   6:Core/Src/init.c ****     *(uint32_t *)(0x40020000UL + 0x08UL) |= 0x40UL; // Настройка скорости пина
+  46              		.loc 1 6 5 is_stmt 1 view .LVU5
+  47 0018 9A68     		ldr	r2, [r3, #8]
+  48              		.loc 1 6 42 is_stmt 0 view .LVU6
+  49 001a 42F04002 		orr	r2, r2, #64
+  50 001e 9A60     		str	r2, [r3, #8]
+   7:Core/Src/init.c ****     *(uint32_t *)(0x40020000UL + 0x0CUL) |= 0x00UL; // настройка подтягивающи�
+  51              		.loc 1 7 5 is_stmt 1 view .LVU7
+ARM GAS  C:\Users\dns\AppData\Local\Temp\ccqhz1k5.s 			page 2
+
+
+   8:Core/Src/init.c ****     *(uint32_t *)(0x40020000UL + 0x18UL) |= 0x80000; // Выключение светодиода P
+  52              		.loc 1 8 5 view .LVU8
+  53 0020 9A69     		ldr	r2, [r3, #24]
+  54              		.loc 1 8 42 is_stmt 0 view .LVU9
+  55 0022 42F40022 		orr	r2, r2, #524288
+  56 0026 9A61     		str	r2, [r3, #24]
+   9:Core/Src/init.c **** }
+  57              		.loc 1 9 1 view .LVU10
+  58 0028 7047     		bx	lr
+  59              	.L3:
+  60 002a 00BF     		.align	2
+  61              	.L2:
+  62 002c 00300240 		.word	1073885184
+  63 0030 00000240 		.word	1073872896
+  64              		.cfi_endproc
+  65              	.LFE130:
+  67              		.section	.text.GPIO_Init_With_Miself_Macros,"ax",%progbits
+  68              		.align	1
+  69              		.global	GPIO_Init_With_Miself_Macros
+  70              		.syntax unified
+  71              		.thumb
+  72              		.thumb_func
+  74              	GPIO_Init_With_Miself_Macros:
+  75              	.LFB131:
+  10:Core/Src/init.c **** 
+  11:Core/Src/init.c **** //Пин PB5 LED2
+  12:Core/Src/init.c **** void GPIO_Init_With_Miself_Macros (void){
+  76              		.loc 1 12 41 is_stmt 1 view -0
+  77              		.cfi_startproc
+  78              		@ args = 0, pretend = 0, frame = 0
+  79              		@ frame_needed = 0, uses_anonymous_args = 0
+  80              		@ link register save eliminated.
+  13:Core/Src/init.c ****     BIT_SET(RCC_AHB1ENR, RCC_GPIOB_EN);// Включение тактирования порта GP
+  81              		.loc 1 13 5 view .LVU12
+  82 0000 0D4A     		ldr	r2, .L5
+  83 0002 D2F83038 		ldr	r3, [r2, #2096]
+  84 0006 43F00203 		orr	r3, r3, #2
+  85 000a C2F83038 		str	r3, [r2, #2096]
+  14:Core/Src/init.c ****     BIT_SET(GPIOB_MODER, GPIO_OUTPUT_MODE_PIN_5);// Настройка пина PB5 на режим
+  86              		.loc 1 14 5 view .LVU13
+  87 000e 0B4B     		ldr	r3, .L5+4
+  88 0010 D3F80024 		ldr	r2, [r3, #1024]
+  89 0014 42F48062 		orr	r2, r2, #1024
+  90 0018 C3F80024 		str	r2, [r3, #1024]
+  15:Core/Src/init.c ****     BIT_SET(GPIOB_OSPEEDR, GPIO_SPEED_MED_PIN_5);// Настройка скорости пина PB
+  91              		.loc 1 15 5 view .LVU14
+  92 001c D3F80824 		ldr	r2, [r3, #1032]
+  93 0020 42F48062 		orr	r2, r2, #1024
+  94 0024 C3F80824 		str	r2, [r3, #1032]
+  16:Core/Src/init.c ****     BIT_SET(GPIOB_PUPDR, GPIO_OFF);
+  95              		.loc 1 16 5 view .LVU15
+  17:Core/Src/init.c ****     BIT_SET(GPIOB_BSRR, GPIO_PIN_RESET_5);// Выключение светодиода PB5, рег�
+  96              		.loc 1 17 5 view .LVU16
+  97 0028 D3F81824 		ldr	r2, [r3, #1048]
+  98 002c 42F40012 		orr	r2, r2, #2097152
+  99 0030 C3F81824 		str	r2, [r3, #1048]
+  18:Core/Src/init.c **** }
+ARM GAS  C:\Users\dns\AppData\Local\Temp\ccqhz1k5.s 			page 3
+
+
+ 100              		.loc 1 18 1 is_stmt 0 view .LVU17
+ 101 0034 7047     		bx	lr
+ 102              	.L6:
+ 103 0036 00BF     		.align	2
+ 104              	.L5:
+ 105 0038 00300240 		.word	1073885184
+ 106 003c 00000240 		.word	1073872896
+ 107              		.cfi_endproc
+ 108              	.LFE131:
+ 110              		.section	.text.GPIO_Init_CMSIS,"ax",%progbits
+ 111              		.align	1
+ 112              		.global	GPIO_Init_CMSIS
+ 113              		.syntax unified
+ 114              		.thumb
+ 115              		.thumb_func
+ 117              	GPIO_Init_CMSIS:
+ 118              	.LFB132:
+  19:Core/Src/init.c **** //Пин PC0 LED3, кнопка 1 PC6, кнопка 2 PC2
+  20:Core/Src/init.c **** void GPIO_Init_CMSIS(void){
+ 119              		.loc 1 20 27 is_stmt 1 view -0
+ 120              		.cfi_startproc
+ 121              		@ args = 0, pretend = 0, frame = 0
+ 122              		@ frame_needed = 0, uses_anonymous_args = 0
+ 123              		@ link register save eliminated.
+  21:Core/Src/init.c ****     SET_BIT(RCC->AHB1ENR, RCC_AHB1ENR_GPIOCEN); // Включение тактирования по
+ 124              		.loc 1 21 5 view .LVU19
+ 125 0000 134A     		ldr	r2, .L8
+ 126 0002 136B     		ldr	r3, [r2, #48]
+ 127 0004 43F00403 		orr	r3, r3, #4
+ 128 0008 1363     		str	r3, [r2, #48]
+  22:Core/Src/init.c ****     SET_BIT(GPIOC->MODER, GPIO_MODER_MODE0_0); // Настройка пина PC0 на режим �
+ 129              		.loc 1 22 5 view .LVU20
+ 130 000a 124B     		ldr	r3, .L8+4
+ 131 000c 1A68     		ldr	r2, [r3]
+ 132 000e 42F00102 		orr	r2, r2, #1
+ 133 0012 1A60     		str	r2, [r3]
+  23:Core/Src/init.c ****     CLEAR_BIT(GPIOC->OTYPER, GPIO_OTYPER_OT_0); // 
+ 134              		.loc 1 23 5 view .LVU21
+ 135 0014 5A68     		ldr	r2, [r3, #4]
+ 136 0016 22F00102 		bic	r2, r2, #1
+ 137 001a 5A60     		str	r2, [r3, #4]
+  24:Core/Src/init.c ****     SET_BIT(GPIOC->OSPEEDR, GPIO_OSPEEDER_OSPEEDR0_0); // Настройка скорости пи�
+ 138              		.loc 1 24 5 view .LVU22
+ 139 001c 9A68     		ldr	r2, [r3, #8]
+ 140 001e 42F00102 		orr	r2, r2, #1
+ 141 0022 9A60     		str	r2, [r3, #8]
+  25:Core/Src/init.c ****     CLEAR_BIT(GPIOC->PUPDR, GPIO_PUPDR_PUPDR0_0); // 
+ 142              		.loc 1 25 5 view .LVU23
+ 143 0024 DA68     		ldr	r2, [r3, #12]
+ 144 0026 22F00102 		bic	r2, r2, #1
+ 145 002a DA60     		str	r2, [r3, #12]
+  26:Core/Src/init.c **** 
+  27:Core/Src/init.c ****     CLEAR_BIT(GPIOC->MODER, GPIO_MODER_MODE6); //  PC6 кнопка 1
+ 146              		.loc 1 27 5 view .LVU24
+ 147 002c 1A68     		ldr	r2, [r3]
+ 148 002e 22F44052 		bic	r2, r2, #12288
+ 149 0032 1A60     		str	r2, [r3]
+ARM GAS  C:\Users\dns\AppData\Local\Temp\ccqhz1k5.s 			page 4
+
+
+  28:Core/Src/init.c ****     CLEAR_BIT(GPIOC->MODER, GPIO_MODER_MODE2); //  PC2  кнопка 2
+ 150              		.loc 1 28 5 view .LVU25
+ 151 0034 1A68     		ldr	r2, [r3]
+ 152 0036 22F03002 		bic	r2, r2, #48
+ 153 003a 1A60     		str	r2, [r3]
+  29:Core/Src/init.c ****     CLEAR_BIT(GPIOC->PUPDR, GPIO_PUPDR_PUPDR6); // PC6 
+ 154              		.loc 1 29 5 view .LVU26
+ 155 003c DA68     		ldr	r2, [r3, #12]
+ 156 003e 22F44052 		bic	r2, r2, #12288
+ 157 0042 DA60     		str	r2, [r3, #12]
+  30:Core/Src/init.c ****     CLEAR_BIT(GPIOC->PUPDR, GPIO_PUPDR_PUPDR2); // PC2 
+ 158              		.loc 1 30 5 view .LVU27
+ 159 0044 DA68     		ldr	r2, [r3, #12]
+ 160 0046 22F03002 		bic	r2, r2, #48
+ 161 004a DA60     		str	r2, [r3, #12]
+  31:Core/Src/init.c **** }
+ 162              		.loc 1 31 1 is_stmt 0 view .LVU28
+ 163 004c 7047     		bx	lr
+ 164              	.L9:
+ 165 004e 00BF     		.align	2
+ 166              	.L8:
+ 167 0050 00380240 		.word	1073887232
+ 168 0054 00080240 		.word	1073874944
+ 169              		.cfi_endproc
+ 170              	.LFE132:
+ 172              		.section	.text.delay_ms,"ax",%progbits
+ 173              		.align	1
+ 174              		.global	delay_ms
+ 175              		.syntax unified
+ 176              		.thumb
+ 177              		.thumb_func
+ 179              	delay_ms:
+ 180              	.LVL0:
+ 181              	.LFB133:
+  32:Core/Src/init.c **** // Задержка для предотвращения дребезга контактов 
+  33:Core/Src/init.c **** void delay_ms(uint32_t ms) {
+ 182              		.loc 1 33 28 is_stmt 1 view -0
+ 183              		.cfi_startproc
+ 184              		@ args = 0, pretend = 0, frame = 0
+ 185              		@ frame_needed = 0, uses_anonymous_args = 0
+ 186              		@ link register save eliminated.
+  34:Core/Src/init.c ****     for(uint32_t i = 0; i < ms * 1000; i++) {
+ 187              		.loc 1 34 5 view .LVU30
+ 188              	.LBB2:
+ 189              		.loc 1 34 9 view .LVU31
+ 190              		.loc 1 34 18 is_stmt 0 view .LVU32
+ 191 0000 0022     		movs	r2, #0
+ 192              		.loc 1 34 5 view .LVU33
+ 193 0002 01E0     		b	.L11
+ 194              	.LVL1:
+ 195              	.L12:
+  35:Core/Src/init.c ****         __asm("nop");
+ 196              		.loc 1 35 9 is_stmt 1 view .LVU34
+ 197              		.syntax unified
+ 198              	@ 35 "Core/Src/init.c" 1
+ 199 0004 00BF     		nop
+ 200              	@ 0 "" 2
+ARM GAS  C:\Users\dns\AppData\Local\Temp\ccqhz1k5.s 			page 5
+
+
+  34:Core/Src/init.c ****     for(uint32_t i = 0; i < ms * 1000; i++) {
+ 201              		.loc 1 34 41 discriminator 3 view .LVU35
+ 202              		.thumb
+ 203              		.syntax unified
+ 204 0006 0132     		adds	r2, r2, #1
+ 205              	.LVL2:
+ 206              	.L11:
+  34:Core/Src/init.c ****     for(uint32_t i = 0; i < ms * 1000; i++) {
+ 207              		.loc 1 34 27 discriminator 1 view .LVU36
+  34:Core/Src/init.c ****     for(uint32_t i = 0; i < ms * 1000; i++) {
+ 208              		.loc 1 34 32 is_stmt 0 discriminator 1 view .LVU37
+ 209 0008 4FF47A73 		mov	r3, #1000
+ 210 000c 00FB03F3 		mul	r3, r0, r3
+  34:Core/Src/init.c ****     for(uint32_t i = 0; i < ms * 1000; i++) {
+ 211              		.loc 1 34 27 discriminator 1 view .LVU38
+ 212 0010 9342     		cmp	r3, r2
+ 213 0012 F7D8     		bhi	.L12
+ 214              	.LBE2:
+  36:Core/Src/init.c ****     }
+  37:Core/Src/init.c **** }...
+ 215              		.loc 1 37 1 view .LVU39
+ 216 0014 7047     		bx	lr
+ 217              		.cfi_endproc
+ 218              	.LFE133:
+ 220              		.text
+ 221              	.Letext0:
+ 222              		.file 2 "C:/Tools/xpack-arm-none-eabi-gcc-13.2.1-1.1/arm-none-eabi/include/machine/_default_types.
+ 223              		.file 3 "C:/Tools/xpack-arm-none-eabi-gcc-13.2.1-1.1/arm-none-eabi/include/sys/_stdint.h"
+ 224              		.file 4 "CMSIS/Devices/STM32F4xx/Inc/STM32F429xx/stm32f429xx.h"
+ARM GAS  C:\Users\dns\AppData\Local\Temp\ccqhz1k5.s 			page 6
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 init.c
+C:\Users\dns\AppData\Local\Temp\ccqhz1k5.s:21     .text.GPIO_Init_Memory:00000000 $t
+C:\Users\dns\AppData\Local\Temp\ccqhz1k5.s:27     .text.GPIO_Init_Memory:00000000 GPIO_Init_Memory
+C:\Users\dns\AppData\Local\Temp\ccqhz1k5.s:62     .text.GPIO_Init_Memory:0000002c $d
+C:\Users\dns\AppData\Local\Temp\ccqhz1k5.s:68     .text.GPIO_Init_With_Miself_Macros:00000000 $t
+C:\Users\dns\AppData\Local\Temp\ccqhz1k5.s:74     .text.GPIO_Init_With_Miself_Macros:00000000 GPIO_Init_With_Miself_Macros
+C:\Users\dns\AppData\Local\Temp\ccqhz1k5.s:105    .text.GPIO_Init_With_Miself_Macros:00000038 $d
+C:\Users\dns\AppData\Local\Temp\ccqhz1k5.s:111    .text.GPIO_Init_CMSIS:00000000 $t
+C:\Users\dns\AppData\Local\Temp\ccqhz1k5.s:117    .text.GPIO_Init_CMSIS:00000000 GPIO_Init_CMSIS
+C:\Users\dns\AppData\Local\Temp\ccqhz1k5.s:167    .text.GPIO_Init_CMSIS:00000050 $d
+C:\Users\dns\AppData\Local\Temp\ccqhz1k5.s:173    .text.delay_ms:00000000 $t
+C:\Users\dns\AppData\Local\Temp\ccqhz1k5.s:179    .text.delay_ms:00000000 delay_ms
+
+NO UNDEFINED SYMBOLS

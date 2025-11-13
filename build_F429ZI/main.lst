@@ -1,0 +1,660 @@
+ARM GAS  C:\Users\dns\AppData\Local\Temp\cceZ7kqN.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"main.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "Core/Src/main.c"
+  20              		.section	.text.main,"ax",%progbits
+  21              		.align	1
+  22              		.global	main
+  23              		.syntax unified
+  24              		.thumb
+  25              		.thumb_func
+  27              	main:
+  28              	.LFB130:
+   1:Core/Src/main.c **** #include "../Inc/init.h"
+   2:Core/Src/main.c **** 
+   3:Core/Src/main.c **** int main(void)
+   4:Core/Src/main.c **** {
+  29              		.loc 1 4 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33 0000 2DE9F843 		push	{r3, r4, r5, r6, r7, r8, r9, lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 32
+  36              		.cfi_offset 3, -32
+  37              		.cfi_offset 4, -28
+  38              		.cfi_offset 5, -24
+  39              		.cfi_offset 6, -20
+  40              		.cfi_offset 7, -16
+  41              		.cfi_offset 8, -12
+  42              		.cfi_offset 9, -8
+  43              		.cfi_offset 14, -4
+   5:Core/Src/main.c ****     GPIO_Init_Memory();
+  44              		.loc 1 5 5 view .LVU1
+  45 0004 FFF7FEFF 		bl	GPIO_Init_Memory
+  46              	.LVL0:
+   6:Core/Src/main.c ****     GPIO_Init_With_Miself_Macros();
+  47              		.loc 1 6 5 view .LVU2
+  48 0008 FFF7FEFF 		bl	GPIO_Init_With_Miself_Macros
+  49              	.LVL1:
+   7:Core/Src/main.c ****     GPIO_Init_CMSIS();
+  50              		.loc 1 7 5 view .LVU3
+  51 000c FFF7FEFF 		bl	GPIO_Init_CMSIS
+ARM GAS  C:\Users\dns\AppData\Local\Temp\cceZ7kqN.s 			page 2
+
+
+  52              	.LVL2:
+   8:Core/Src/main.c **** 
+   9:Core/Src/main.c ****     uint8_t led_number = 0;  // Номер светодиода
+  53              		.loc 1 9 5 view .LVU4
+  10:Core/Src/main.c ****     uint8_t led_count = 0;   // Количество включаемых светодиодов
+  54              		.loc 1 10 5 view .LVU5
+  11:Core/Src/main.c ****     uint8_t but_press_1 = 0; // Кнопка 1 нажата
+  55              		.loc 1 11 5 view .LVU6
+  12:Core/Src/main.c ****     uint8_t but_press_2 = 0; // Кнопка 2 нажата
+  56              		.loc 1 12 5 view .LVU7
+  57              		.loc 1 12 13 is_stmt 0 view .LVU8
+  58 0010 0026     		movs	r6, #0
+  11:Core/Src/main.c ****     uint8_t but_press_1 = 0; // Кнопка 1 нажата
+  59              		.loc 1 11 13 view .LVU9
+  60 0012 3746     		mov	r7, r6
+  10:Core/Src/main.c ****     uint8_t led_count = 0;   // Количество включаемых светодиодов
+  61              		.loc 1 10 13 view .LVU10
+  62 0014 B046     		mov	r8, r6
+   9:Core/Src/main.c ****     uint8_t led_count = 0;   // Количество включаемых светодиодов
+  63              		.loc 1 9 13 view .LVU11
+  64 0016 B146     		mov	r9, r6
+  65 0018 2EE0     		b	.L2
+  66              	.LVL3:
+  67              	.L21:
+  68              	.LBB2:
+  13:Core/Src/main.c **** 
+  14:Core/Src/main.c ****     while (1)
+  15:Core/Src/main.c ****     {
+  16:Core/Src/main.c ****         uint32_t button_1 = READ_BIT(GPIOC->IDR, GPIO_IDR_ID6); // Чтение состояния 
+  17:Core/Src/main.c ****         uint32_t button_2 = READ_BIT(GPIOC->IDR, GPIO_IDR_ID2); // Чтение состояния 
+  18:Core/Src/main.c **** 
+  19:Core/Src/main.c ****         if (button_2 && !but_press_2)
+  20:Core/Src/main.c ****         {
+  21:Core/Src/main.c ****             but_press_2 = 1;
+  69              		.loc 1 21 13 is_stmt 1 view .LVU12
+  22:Core/Src/main.c ****             delay_ms(500); // Задержка для предотвращения дребезга
+  70              		.loc 1 22 13 view .LVU13
+  71 001a 4FF4FA70 		mov	r0, #500
+  72 001e FFF7FEFF 		bl	delay_ms
+  73              	.LVL4:
+  23:Core/Src/main.c **** 
+  24:Core/Src/main.c ****             led_count++;
+  74              		.loc 1 24 13 view .LVU14
+  75              		.loc 1 24 22 is_stmt 0 view .LVU15
+  76 0022 08F10108 		add	r8, r8, #1
+  77              	.LVL5:
+  78              		.loc 1 24 22 view .LVU16
+  79 0026 5FFA88F8 		uxtb	r8, r8
+  80              	.LVL6:
+  25:Core/Src/main.c ****             if (led_count > 3)
+  81              		.loc 1 25 13 is_stmt 1 view .LVU17
+  82              		.loc 1 25 16 is_stmt 0 view .LVU18
+  83 002a B8F1030F 		cmp	r8, #3
+  84 002e 01D8     		bhi	.L16
+  21:Core/Src/main.c ****             delay_ms(500); // Задержка для предотвращения дребезга
+  85              		.loc 1 21 25 view .LVU19
+  86 0030 0126     		movs	r6, #1
+ARM GAS  C:\Users\dns\AppData\Local\Temp\cceZ7kqN.s 			page 3
+
+
+  87 0032 2BE0     		b	.L3
+  88              	.L16:
+  26:Core/Src/main.c ****             {
+  27:Core/Src/main.c ****                 led_count = 0;
+  89              		.loc 1 27 27 view .LVU20
+  90 0034 B046     		mov	r8, r6
+  91              	.LVL7:
+  21:Core/Src/main.c ****             delay_ms(500); // Задержка для предотвращения дребезга
+  92              		.loc 1 21 25 view .LVU21
+  93 0036 0126     		movs	r6, #1
+  94 0038 28E0     		b	.L3
+  95              	.LVL8:
+  96              	.L22:
+  28:Core/Src/main.c ****             }
+  29:Core/Src/main.c ****         }
+  30:Core/Src/main.c **** 
+  31:Core/Src/main.c ****         if (!button_2)
+  32:Core/Src/main.c ****         {
+  33:Core/Src/main.c ****             but_press_2 = 0;
+  34:Core/Src/main.c ****         }
+  35:Core/Src/main.c **** 
+  36:Core/Src/main.c ****         if (button_1 && !but_press_1)
+  37:Core/Src/main.c ****         {
+  38:Core/Src/main.c ****             but_press_1 = 1;
+  39:Core/Src/main.c ****             delay_ms(500); // Задержка для предотвращения дребезга
+  40:Core/Src/main.c **** 
+  41:Core/Src/main.c ****             if (led_count == 1 || led_count == 0)
+  42:Core/Src/main.c ****             {
+  43:Core/Src/main.c ****                 // Включается 1 светодиод
+  44:Core/Src/main.c ****                 if (led_number == 0)
+  97              		.loc 1 44 17 is_stmt 1 view .LVU22
+  98              		.loc 1 44 20 is_stmt 0 view .LVU23
+  99 003a B9F1000F 		cmp	r9, #0
+ 100 003e 4DD1     		bne	.L7
+  45:Core/Src/main.c ****                 {
+  46:Core/Src/main.c ****                     // LED1 (PA3)
+  47:Core/Src/main.c ****                     SET_BIT(GPIOA->BSRR, GPIO_BSRR_BS3);
+ 101              		.loc 1 47 21 is_stmt 1 view .LVU24
+ 102 0040 664A     		ldr	r2, .L27
+ 103 0042 9369     		ldr	r3, [r2, #24]
+ 104 0044 43F00803 		orr	r3, r3, #8
+ 105 0048 9361     		str	r3, [r2, #24]
+  48:Core/Src/main.c ****                     SET_BIT(GPIOC->BSRR, GPIO_BSRR_BR0);
+ 106              		.loc 1 48 21 view .LVU25
+ 107 004a 02F50062 		add	r2, r2, #2048
+ 108 004e 9369     		ldr	r3, [r2, #24]
+ 109 0050 43F48033 		orr	r3, r3, #65536
+ 110 0054 9361     		str	r3, [r2, #24]
+  49:Core/Src/main.c ****                     SET_BIT(GPIOB->BSRR, GPIO_BSRR_BR5);
+ 111              		.loc 1 49 21 view .LVU26
+ 112 0056 A2F58062 		sub	r2, r2, #1024
+ 113 005a 9369     		ldr	r3, [r2, #24]
+ 114 005c 43F40013 		orr	r3, r3, #2097152
+ 115 0060 9361     		str	r3, [r2, #24]
+ 116              	.L8:
+  50:Core/Src/main.c **** 
+  51:Core/Src/main.c ****                     // другое
+ARM GAS  C:\Users\dns\AppData\Local\Temp\cceZ7kqN.s 			page 4
+
+
+  52:Core/Src/main.c ****                     // *(uint32_t *)(0x40020000UL + 0x18UL) |= 0x00000008UL;
+  53:Core/Src/main.c ****                     // BIT_SET(GPIOB_BSRR, GPIO_PIN_RESET_5);
+  54:Core/Src/main.c ****                     // SET_BIT(GPIOB->BSRR, GPIO_BSRR_BR5);
+  55:Core/Src/main.c **** 
+  56:Core/Src/main.c ****                     // то что было
+  57:Core/Src/main.c ****                     // SET_BIT(GPIOA->ODR, GPIO_ODR_OD3);
+  58:Core/Src/main.c ****                     // CLEAR_BIT(GPIOC->ODR, GPIO_ODR_OD0);
+  59:Core/Src/main.c ****                     // CLEAR_BIT(GPIOB->ODR, GPIO_ODR_OD5);
+  60:Core/Src/main.c ****                 }
+  61:Core/Src/main.c ****                 else if (led_number == 1)
+  62:Core/Src/main.c ****                 {
+  63:Core/Src/main.c ****                     // LED2 (PC0)
+  64:Core/Src/main.c ****                     SET_BIT(GPIOA->BSRR, GPIO_BSRR_BR3);
+  65:Core/Src/main.c ****                     SET_BIT(GPIOC->BSRR, GPIO_BSRR_BS0);
+  66:Core/Src/main.c ****                     SET_BIT(GPIOB->BSRR, GPIO_BSRR_BR5);
+  67:Core/Src/main.c **** 
+  68:Core/Src/main.c ****                     // другое
+  69:Core/Src/main.c ****                     // *(uint32_t *)(0x40020000UL + 0x18UL) |= 0x00080000UL;
+  70:Core/Src/main.c ****                     // BIT_SET(GPIOB_BSRR, GPIO_PIN_SET_5);
+  71:Core/Src/main.c ****                     // SET_BIT(GPIOB->BSRR, GPIO_BSRR_BR5);
+  72:Core/Src/main.c **** 
+  73:Core/Src/main.c ****                     // CLEAR_BIT(GPIOA->ODR, GPIO_ODR_OD3);
+  74:Core/Src/main.c ****                     // SET_BIT(GPIOC->ODR, GPIO_ODR_OD0);
+  75:Core/Src/main.c ****                     // CLEAR_BIT(GPIOB->ODR, GPIO_ODR_OD5);
+  76:Core/Src/main.c ****                 }
+  77:Core/Src/main.c ****                 else if (led_number == 2)
+  78:Core/Src/main.c ****                 {
+  79:Core/Src/main.c ****                     // LED3 (PB5)
+  80:Core/Src/main.c ****                     SET_BIT(GPIOA->BSRR, GPIO_BSRR_BR3);
+  81:Core/Src/main.c ****                     SET_BIT(GPIOC->BSRR, GPIO_BSRR_BR0);
+  82:Core/Src/main.c ****                     SET_BIT(GPIOB->BSRR, GPIO_BSRR_BS5);
+  83:Core/Src/main.c **** 
+  84:Core/Src/main.c ****                     // другое
+  85:Core/Src/main.c ****                     // *(uint32_t *)(0x40020000UL + 0x18UL) |= 0x00080000UL;
+  86:Core/Src/main.c ****                     // BIT_SET(GPIOB_BSRR, GPIO_PIN_RESET_5);
+  87:Core/Src/main.c ****                     // SET_BIT(GPIOB->BSRR, GPIO_BSRR_BS5);
+  88:Core/Src/main.c **** 
+  89:Core/Src/main.c ****                     // CLEAR_BIT(GPIOA->ODR, GPIO_ODR_OD3);
+  90:Core/Src/main.c ****                     // CLEAR_BIT(GPIOC->ODR, GPIO_ODR_OD0);
+  91:Core/Src/main.c ****                     // SET_BIT(GPIOB->ODR, GPIO_ODR_OD5);
+  92:Core/Src/main.c ****                 }
+  93:Core/Src/main.c ****             }
+  94:Core/Src/main.c ****             else if (led_count == 2)
+  95:Core/Src/main.c ****             {
+  96:Core/Src/main.c ****                 // Включаются 2 светодиода циклически
+  97:Core/Src/main.c ****                 if (led_number == 0)
+  98:Core/Src/main.c ****                 {
+  99:Core/Src/main.c ****                     //   LED1 и LED2
+ 100:Core/Src/main.c ****                     SET_BIT(GPIOA->BSRR, GPIO_BSRR_BS3);
+ 101:Core/Src/main.c ****                     SET_BIT(GPIOC->BSRR, GPIO_BSRR_BS0);
+ 102:Core/Src/main.c ****                     SET_BIT(GPIOB->BSRR, GPIO_BSRR_BR5);
+ 103:Core/Src/main.c **** 
+ 104:Core/Src/main.c ****                     // другое
+ 105:Core/Src/main.c ****                     // *(uint32_t *)(0x40020000UL + 0x18UL) |= 0x00000008UL;
+ 106:Core/Src/main.c ****                     // BIT_SET(GPIOB_BSRR, GPIO_PIN_SET_5);
+ 107:Core/Src/main.c ****                     // SET_BIT(GPIOB->BSRR, GPIO_BSRR_BR5);
+ 108:Core/Src/main.c **** 
+ARM GAS  C:\Users\dns\AppData\Local\Temp\cceZ7kqN.s 			page 5
+
+
+ 109:Core/Src/main.c ****                     // SET_BIT(GPIOA->ODR, GPIO_ODR_OD3);
+ 110:Core/Src/main.c ****                     // SET_BIT(GPIOC->ODR, GPIO_ODR_OD0);
+ 111:Core/Src/main.c ****                     // CLEAR_BIT(GPIOB->ODR, GPIO_ODR_OD5);
+ 112:Core/Src/main.c ****                 }
+ 113:Core/Src/main.c ****                 else if (led_number == 1)
+ 114:Core/Src/main.c ****                 {
+ 115:Core/Src/main.c ****                     //    LED2 и LED3
+ 116:Core/Src/main.c ****                     SET_BIT(GPIOA->BSRR, GPIO_BSRR_BR3);
+ 117:Core/Src/main.c ****                     SET_BIT(GPIOC->BSRR, GPIO_BSRR_BS0);
+ 118:Core/Src/main.c ****                     SET_BIT(GPIOB->BSRR, GPIO_BSRR_BS5);
+ 119:Core/Src/main.c **** 
+ 120:Core/Src/main.c ****                     // другое
+ 121:Core/Src/main.c ****                     // *(uint32_t *)(0x40020000UL + 0x18UL) |= 0x00080000UL;
+ 122:Core/Src/main.c ****                     // BIT_SET(GPIOB_BSRR, GPIO_PIN_SET_5);
+ 123:Core/Src/main.c ****                     // SET_BIT(GPIOB->BSRR, GPIO_BSRR_BS5);
+ 124:Core/Src/main.c **** 
+ 125:Core/Src/main.c ****                     // CLEAR_BIT(GPIOA->ODR, GPIO_ODR_OD3);
+ 126:Core/Src/main.c ****                     // SET_BIT(GPIOC->ODR, GPIO_ODR_OD0);
+ 127:Core/Src/main.c ****                     // SET_BIT(GPIOB->ODR, GPIO_ODR_OD5);
+ 128:Core/Src/main.c ****                 }
+ 129:Core/Src/main.c ****                 else if (led_number == 2)
+ 130:Core/Src/main.c ****                 {
+ 131:Core/Src/main.c ****                     //   LED3 и LED1
+ 132:Core/Src/main.c ****                     SET_BIT(GPIOA->BSRR, GPIO_BSRR_BS3);
+ 133:Core/Src/main.c ****                     SET_BIT(GPIOC->BSRR, GPIO_BSRR_BR0);
+ 134:Core/Src/main.c ****                     SET_BIT(GPIOB->BSRR, GPIO_BSRR_BS5);
+ 135:Core/Src/main.c **** 
+ 136:Core/Src/main.c ****                     // другое
+ 137:Core/Src/main.c ****                     // *(uint32_t *)(0x40020000UL + 0x18UL) |= 0x00000008UL;
+ 138:Core/Src/main.c ****                     // BIT_SET(GPIOB_BSRR, GPIO_PIN_RESET_5);
+ 139:Core/Src/main.c ****                     // SET_BIT(GPIOB->BSRR, GPIO_BSRR_BS5);
+ 140:Core/Src/main.c **** 
+ 141:Core/Src/main.c ****                     // SET_BIT(GPIOA->ODR, GPIO_ODR_OD3);
+ 142:Core/Src/main.c ****                     // CLEAR_BIT(GPIOC->ODR, GPIO_ODR_OD0);
+ 143:Core/Src/main.c ****                     // SET_BIT(GPIOB->ODR, GPIO_ODR_OD5);
+ 144:Core/Src/main.c ****                 }
+ 145:Core/Src/main.c ****             }
+ 146:Core/Src/main.c ****             else if (led_count == 3)
+ 147:Core/Src/main.c ****             {
+ 148:Core/Src/main.c ****                 // Включаются все 3 светодиода
+ 149:Core/Src/main.c ****                 if (led_number == 1)
+ 150:Core/Src/main.c ****                 {
+ 151:Core/Src/main.c ****                     SET_BIT(GPIOA->BSRR, GPIO_BSRR_BS3);
+ 152:Core/Src/main.c ****                     SET_BIT(GPIOC->BSRR, GPIO_BSRR_BS0);
+ 153:Core/Src/main.c ****                     SET_BIT(GPIOB->BSRR, GPIO_BSRR_BS5);
+ 154:Core/Src/main.c **** 
+ 155:Core/Src/main.c ****                     // другое
+ 156:Core/Src/main.c ****                     // *(uint32_t *)(0x40020000UL + 0x18UL) |= 0x00000008UL;
+ 157:Core/Src/main.c ****                     // BIT_SET(GPIOB_BSRR, GPIO_PIN_SET_5);
+ 158:Core/Src/main.c ****                     // SET_BIT(GPIOB->BSRR, GPIO_BSRR_BS5);
+ 159:Core/Src/main.c **** 
+ 160:Core/Src/main.c ****                     // SET_BIT(GPIOA->ODR, GPIO_ODR_OD3);
+ 161:Core/Src/main.c ****                     // SET_BIT(GPIOC->ODR, GPIO_ODR_OD0);
+ 162:Core/Src/main.c ****                     // SET_BIT(GPIOB->ODR, GPIO_ODR_OD5);
+ 163:Core/Src/main.c ****                 }
+ 164:Core/Src/main.c ****                 else
+ 165:Core/Src/main.c ****                 {
+ARM GAS  C:\Users\dns\AppData\Local\Temp\cceZ7kqN.s 			page 6
+
+
+ 166:Core/Src/main.c ****                     SET_BIT(GPIOA->BSRR, GPIO_BSRR_BR3);
+ 167:Core/Src/main.c ****                     SET_BIT(GPIOC->BSRR, GPIO_BSRR_BR0);
+ 168:Core/Src/main.c ****                     SET_BIT(GPIOB->BSRR, GPIO_BSRR_BR5);
+ 169:Core/Src/main.c **** 
+ 170:Core/Src/main.c ****                     // другое
+ 171:Core/Src/main.c ****                     // *(uint32_t *)(0x40020000UL + 0x18UL) |= 0x00080000UL;
+ 172:Core/Src/main.c ****                     // BIT_SET(GPIOB_BSRR, GPIO_PIN_RESET_5);
+ 173:Core/Src/main.c ****                     // SET_BIT(GPIOB->BSRR, GPIO_BSRR_BR5);
+ 174:Core/Src/main.c **** 
+ 175:Core/Src/main.c ****                     // CLEAR_BIT(GPIOA->ODR, GPIO_ODR_OD3);
+ 176:Core/Src/main.c ****                     // CLEAR_BIT(GPIOC->ODR, GPIO_ODR_OD0);
+ 177:Core/Src/main.c ****                     // CLEAR_BIT(GPIOB->ODR, GPIO_ODR_OD5);
+ 178:Core/Src/main.c ****                 }
+ 179:Core/Src/main.c ****             }
+ 180:Core/Src/main.c **** 
+ 181:Core/Src/main.c ****             led_number++;
+ 117              		.loc 1 181 13 view .LVU27
+ 118              		.loc 1 181 23 is_stmt 0 view .LVU28
+ 119 0062 09F10109 		add	r9, r9, #1
+ 120              	.LVL9:
+ 121              		.loc 1 181 23 view .LVU29
+ 122 0066 5FFA89F9 		uxtb	r9, r9
+ 123              	.LVL10:
+ 182:Core/Src/main.c ****             if (led_number > 2)
+ 124              		.loc 1 182 13 is_stmt 1 view .LVU30
+ 125              		.loc 1 182 16 is_stmt 0 view .LVU31
+ 126 006a B9F1020F 		cmp	r9, #2
+ 127 006e 00F2B180 		bhi	.L18
+  38:Core/Src/main.c ****             delay_ms(500); // Задержка для предотвращения дребезга
+ 128              		.loc 1 38 25 view .LVU32
+ 129 0072 0127     		movs	r7, #1
+ 130              	.LVL11:
+ 131              	.L5:
+ 183:Core/Src/main.c ****             {
+ 184:Core/Src/main.c ****                 led_number = 0;
+ 185:Core/Src/main.c ****             }
+ 186:Core/Src/main.c ****         }
+ 187:Core/Src/main.c **** 
+ 188:Core/Src/main.c ****         if (!button_1)
+ 132              		.loc 1 188 9 is_stmt 1 view .LVU33
+ 133              		.loc 1 188 12 is_stmt 0 view .LVU34
+ 134 0074 04B9     		cbnz	r4, .L2
+ 189:Core/Src/main.c ****         {
+ 190:Core/Src/main.c ****             but_press_1 = 0;
+ 135              		.loc 1 190 25 view .LVU35
+ 136 0076 0027     		movs	r7, #0
+ 137              	.LVL12:
+ 138              	.L2:
+ 139              		.loc 1 190 25 view .LVU36
+ 140              	.LBE2:
+  14:Core/Src/main.c ****     {
+ 141              		.loc 1 14 5 is_stmt 1 view .LVU37
+ 142              	.LBB3:
+  16:Core/Src/main.c ****         uint32_t button_2 = READ_BIT(GPIOC->IDR, GPIO_IDR_ID2); // Чтение состояния 
+ 143              		.loc 1 16 9 view .LVU38
+  16:Core/Src/main.c ****         uint32_t button_2 = READ_BIT(GPIOC->IDR, GPIO_IDR_ID2); // Чтение состояния 
+ 144              		.loc 1 16 29 is_stmt 0 view .LVU39
+ARM GAS  C:\Users\dns\AppData\Local\Temp\cceZ7kqN.s 			page 7
+
+
+ 145 0078 594B     		ldr	r3, .L27+4
+ 146 007a 1C69     		ldr	r4, [r3, #16]
+  16:Core/Src/main.c ****         uint32_t button_2 = READ_BIT(GPIOC->IDR, GPIO_IDR_ID2); // Чтение состояния 
+ 147              		.loc 1 16 18 view .LVU40
+ 148 007c 04F04004 		and	r4, r4, #64
+ 149              	.LVL13:
+  17:Core/Src/main.c **** 
+ 150              		.loc 1 17 9 is_stmt 1 view .LVU41
+  17:Core/Src/main.c **** 
+ 151              		.loc 1 17 29 is_stmt 0 view .LVU42
+ 152 0080 1D69     		ldr	r5, [r3, #16]
+ 153              	.LVL14:
+  19:Core/Src/main.c ****         {
+ 154              		.loc 1 19 9 is_stmt 1 view .LVU43
+  19:Core/Src/main.c ****         {
+ 155              		.loc 1 19 12 is_stmt 0 view .LVU44
+ 156 0082 15F00405 		ands	r5, r5, #4
+ 157              	.LVL15:
+  19:Core/Src/main.c ****         {
+ 158              		.loc 1 19 12 view .LVU45
+ 159 0086 01D0     		beq	.L3
+  19:Core/Src/main.c ****         {
+ 160              		.loc 1 19 22 discriminator 1 view .LVU46
+ 161 0088 002E     		cmp	r6, #0
+ 162 008a C6D0     		beq	.L21
+ 163              	.LVL16:
+ 164              	.L3:
+  31:Core/Src/main.c ****         {
+ 165              		.loc 1 31 9 is_stmt 1 view .LVU47
+  31:Core/Src/main.c ****         {
+ 166              		.loc 1 31 12 is_stmt 0 view .LVU48
+ 167 008c 05B9     		cbnz	r5, .L4
+  33:Core/Src/main.c ****         }
+ 168              		.loc 1 33 25 view .LVU49
+ 169 008e 0026     		movs	r6, #0
+ 170              	.LVL17:
+ 171              	.L4:
+  36:Core/Src/main.c ****         {
+ 172              		.loc 1 36 9 is_stmt 1 view .LVU50
+  36:Core/Src/main.c ****         {
+ 173              		.loc 1 36 12 is_stmt 0 view .LVU51
+ 174 0090 002C     		cmp	r4, #0
+ 175 0092 EFD0     		beq	.L5
+  36:Core/Src/main.c ****         {
+ 176              		.loc 1 36 22 discriminator 1 view .LVU52
+ 177 0094 002F     		cmp	r7, #0
+ 178 0096 EDD1     		bne	.L5
+  38:Core/Src/main.c ****             delay_ms(500); // Задержка для предотвращения дребезга
+ 179              		.loc 1 38 13 is_stmt 1 view .LVU53
+ 180              	.LVL18:
+  39:Core/Src/main.c **** 
+ 181              		.loc 1 39 13 view .LVU54
+ 182 0098 4FF4FA70 		mov	r0, #500
+ 183 009c FFF7FEFF 		bl	delay_ms
+ 184              	.LVL19:
+  41:Core/Src/main.c ****             {
+ 185              		.loc 1 41 13 view .LVU55
+ARM GAS  C:\Users\dns\AppData\Local\Temp\cceZ7kqN.s 			page 8
+
+
+  41:Core/Src/main.c ****             {
+ 186              		.loc 1 41 16 is_stmt 0 view .LVU56
+ 187 00a0 B8F1010F 		cmp	r8, #1
+ 188 00a4 C9D9     		bls	.L22
+  94:Core/Src/main.c ****             {
+ 189              		.loc 1 94 18 is_stmt 1 view .LVU57
+  94:Core/Src/main.c ****             {
+ 190              		.loc 1 94 21 is_stmt 0 view .LVU58
+ 191 00a6 B8F1020F 		cmp	r8, #2
+ 192 00aa 41D0     		beq	.L23
+ 146:Core/Src/main.c ****             {
+ 193              		.loc 1 146 18 is_stmt 1 view .LVU59
+ 146:Core/Src/main.c ****             {
+ 194              		.loc 1 146 21 is_stmt 0 view .LVU60
+ 195 00ac B8F1030F 		cmp	r8, #3
+ 196 00b0 D7D1     		bne	.L8
+ 149:Core/Src/main.c ****                 {
+ 197              		.loc 1 149 17 is_stmt 1 view .LVU61
+ 149:Core/Src/main.c ****                 {
+ 198              		.loc 1 149 20 is_stmt 0 view .LVU62
+ 199 00b2 B9F1010F 		cmp	r9, #1
+ 200 00b6 7BD0     		beq	.L24
+ 166:Core/Src/main.c ****                     SET_BIT(GPIOC->BSRR, GPIO_BSRR_BR0);
+ 201              		.loc 1 166 21 is_stmt 1 view .LVU63
+ 202 00b8 484A     		ldr	r2, .L27
+ 203 00ba 9369     		ldr	r3, [r2, #24]
+ 204 00bc 43F40023 		orr	r3, r3, #524288
+ 205 00c0 9361     		str	r3, [r2, #24]
+ 167:Core/Src/main.c ****                     SET_BIT(GPIOB->BSRR, GPIO_BSRR_BR5);
+ 206              		.loc 1 167 21 view .LVU64
+ 207 00c2 02F50062 		add	r2, r2, #2048
+ 208 00c6 9369     		ldr	r3, [r2, #24]
+ 209 00c8 43F48033 		orr	r3, r3, #65536
+ 210 00cc 9361     		str	r3, [r2, #24]
+ 168:Core/Src/main.c **** 
+ 211              		.loc 1 168 21 view .LVU65
+ 212 00ce A2F58062 		sub	r2, r2, #1024
+ 213 00d2 9369     		ldr	r3, [r2, #24]
+ 214 00d4 43F40013 		orr	r3, r3, #2097152
+ 215 00d8 9361     		str	r3, [r2, #24]
+ 216 00da C2E7     		b	.L8
+ 217              	.L7:
+  61:Core/Src/main.c ****                 {
+ 218              		.loc 1 61 22 view .LVU66
+  61:Core/Src/main.c ****                 {
+ 219              		.loc 1 61 25 is_stmt 0 view .LVU67
+ 220 00dc B9F1010F 		cmp	r9, #1
+ 221 00e0 14D0     		beq	.L25
+  77:Core/Src/main.c ****                 {
+ 222              		.loc 1 77 22 is_stmt 1 view .LVU68
+  77:Core/Src/main.c ****                 {
+ 223              		.loc 1 77 25 is_stmt 0 view .LVU69
+ 224 00e2 B9F1020F 		cmp	r9, #2
+ 225 00e6 BCD1     		bne	.L8
+  80:Core/Src/main.c ****                     SET_BIT(GPIOC->BSRR, GPIO_BSRR_BR0);
+ 226              		.loc 1 80 21 is_stmt 1 view .LVU70
+ 227 00e8 3C4A     		ldr	r2, .L27
+ARM GAS  C:\Users\dns\AppData\Local\Temp\cceZ7kqN.s 			page 9
+
+
+ 228 00ea 9369     		ldr	r3, [r2, #24]
+ 229 00ec 43F40023 		orr	r3, r3, #524288
+ 230 00f0 9361     		str	r3, [r2, #24]
+  81:Core/Src/main.c ****                     SET_BIT(GPIOB->BSRR, GPIO_BSRR_BS5);
+ 231              		.loc 1 81 21 view .LVU71
+ 232 00f2 02F50062 		add	r2, r2, #2048
+ 233 00f6 9369     		ldr	r3, [r2, #24]
+ 234 00f8 43F48033 		orr	r3, r3, #65536
+ 235 00fc 9361     		str	r3, [r2, #24]
+  82:Core/Src/main.c **** 
+ 236              		.loc 1 82 21 view .LVU72
+ 237 00fe A2F58062 		sub	r2, r2, #1024
+ 238 0102 9369     		ldr	r3, [r2, #24]
+ 239 0104 43F02003 		orr	r3, r3, #32
+ 240 0108 9361     		str	r3, [r2, #24]
+ 241 010a AAE7     		b	.L8
+ 242              	.L25:
+  64:Core/Src/main.c ****                     SET_BIT(GPIOC->BSRR, GPIO_BSRR_BS0);
+ 243              		.loc 1 64 21 view .LVU73
+ 244 010c 334A     		ldr	r2, .L27
+ 245 010e 9369     		ldr	r3, [r2, #24]
+ 246 0110 43F40023 		orr	r3, r3, #524288
+ 247 0114 9361     		str	r3, [r2, #24]
+  65:Core/Src/main.c ****                     SET_BIT(GPIOB->BSRR, GPIO_BSRR_BR5);
+ 248              		.loc 1 65 21 view .LVU74
+ 249 0116 02F50062 		add	r2, r2, #2048
+ 250 011a 9369     		ldr	r3, [r2, #24]
+ 251 011c 43F00103 		orr	r3, r3, #1
+ 252 0120 9361     		str	r3, [r2, #24]
+  66:Core/Src/main.c **** 
+ 253              		.loc 1 66 21 view .LVU75
+ 254 0122 A2F58062 		sub	r2, r2, #1024
+ 255 0126 9369     		ldr	r3, [r2, #24]
+ 256 0128 43F40013 		orr	r3, r3, #2097152
+ 257 012c 9361     		str	r3, [r2, #24]
+ 258 012e 98E7     		b	.L8
+ 259              	.L23:
+  97:Core/Src/main.c ****                 {
+ 260              		.loc 1 97 17 view .LVU76
+  97:Core/Src/main.c ****                 {
+ 261              		.loc 1 97 20 is_stmt 0 view .LVU77
+ 262 0130 B9F1000F 		cmp	r9, #0
+ 263 0134 11D1     		bne	.L11
+ 100:Core/Src/main.c ****                     SET_BIT(GPIOC->BSRR, GPIO_BSRR_BS0);
+ 264              		.loc 1 100 21 is_stmt 1 view .LVU78
+ 265 0136 294A     		ldr	r2, .L27
+ 266 0138 9369     		ldr	r3, [r2, #24]
+ 267 013a 43F00803 		orr	r3, r3, #8
+ 268 013e 9361     		str	r3, [r2, #24]
+ 101:Core/Src/main.c ****                     SET_BIT(GPIOB->BSRR, GPIO_BSRR_BR5);
+ 269              		.loc 1 101 21 view .LVU79
+ 270 0140 02F50062 		add	r2, r2, #2048
+ 271 0144 9369     		ldr	r3, [r2, #24]
+ 272 0146 43F00103 		orr	r3, r3, #1
+ 273 014a 9361     		str	r3, [r2, #24]
+ 102:Core/Src/main.c **** 
+ 274              		.loc 1 102 21 view .LVU80
+ARM GAS  C:\Users\dns\AppData\Local\Temp\cceZ7kqN.s 			page 10
+
+
+ 275 014c A2F58062 		sub	r2, r2, #1024
+ 276 0150 9369     		ldr	r3, [r2, #24]
+ 277 0152 43F40013 		orr	r3, r3, #2097152
+ 278 0156 9361     		str	r3, [r2, #24]
+ 279 0158 83E7     		b	.L8
+ 280              	.L11:
+ 113:Core/Src/main.c ****                 {
+ 281              		.loc 1 113 22 view .LVU81
+ 113:Core/Src/main.c ****                 {
+ 282              		.loc 1 113 25 is_stmt 0 view .LVU82
+ 283 015a B9F1010F 		cmp	r9, #1
+ 284 015e 15D0     		beq	.L26
+ 129:Core/Src/main.c ****                 {
+ 285              		.loc 1 129 22 is_stmt 1 view .LVU83
+ 129:Core/Src/main.c ****                 {
+ 286              		.loc 1 129 25 is_stmt 0 view .LVU84
+ 287 0160 B9F1020F 		cmp	r9, #2
+ 288 0164 7FF47DAF 		bne	.L8
+ 132:Core/Src/main.c ****                     SET_BIT(GPIOC->BSRR, GPIO_BSRR_BR0);
+ 289              		.loc 1 132 21 is_stmt 1 view .LVU85
+ 290 0168 1C4A     		ldr	r2, .L27
+ 291 016a 9369     		ldr	r3, [r2, #24]
+ 292 016c 43F00803 		orr	r3, r3, #8
+ 293 0170 9361     		str	r3, [r2, #24]
+ 133:Core/Src/main.c ****                     SET_BIT(GPIOB->BSRR, GPIO_BSRR_BS5);
+ 294              		.loc 1 133 21 view .LVU86
+ 295 0172 02F50062 		add	r2, r2, #2048
+ 296 0176 9369     		ldr	r3, [r2, #24]
+ 297 0178 43F48033 		orr	r3, r3, #65536
+ 298 017c 9361     		str	r3, [r2, #24]
+ 134:Core/Src/main.c **** 
+ 299              		.loc 1 134 21 view .LVU87
+ 300 017e A2F58062 		sub	r2, r2, #1024
+ 301 0182 9369     		ldr	r3, [r2, #24]
+ 302 0184 43F02003 		orr	r3, r3, #32
+ 303 0188 9361     		str	r3, [r2, #24]
+ 304 018a 6AE7     		b	.L8
+ 305              	.L26:
+ 116:Core/Src/main.c ****                     SET_BIT(GPIOC->BSRR, GPIO_BSRR_BS0);
+ 306              		.loc 1 116 21 view .LVU88
+ 307 018c 134A     		ldr	r2, .L27
+ 308 018e 9369     		ldr	r3, [r2, #24]
+ 309 0190 43F40023 		orr	r3, r3, #524288
+ 310 0194 9361     		str	r3, [r2, #24]
+ 117:Core/Src/main.c ****                     SET_BIT(GPIOB->BSRR, GPIO_BSRR_BS5);
+ 311              		.loc 1 117 21 view .LVU89
+ 312 0196 02F50062 		add	r2, r2, #2048
+ 313 019a 9369     		ldr	r3, [r2, #24]
+ 314 019c 43F00103 		orr	r3, r3, #1
+ 315 01a0 9361     		str	r3, [r2, #24]
+ 118:Core/Src/main.c **** 
+ 316              		.loc 1 118 21 view .LVU90
+ 317 01a2 A2F58062 		sub	r2, r2, #1024
+ 318 01a6 9369     		ldr	r3, [r2, #24]
+ 319 01a8 43F02003 		orr	r3, r3, #32
+ 320 01ac 9361     		str	r3, [r2, #24]
+ 321 01ae 58E7     		b	.L8
+ARM GAS  C:\Users\dns\AppData\Local\Temp\cceZ7kqN.s 			page 11
+
+
+ 322              	.L24:
+ 151:Core/Src/main.c ****                     SET_BIT(GPIOC->BSRR, GPIO_BSRR_BS0);
+ 323              		.loc 1 151 21 view .LVU91
+ 324 01b0 0A4A     		ldr	r2, .L27
+ 325 01b2 9369     		ldr	r3, [r2, #24]
+ 326 01b4 43F00803 		orr	r3, r3, #8
+ 327 01b8 9361     		str	r3, [r2, #24]
+ 152:Core/Src/main.c ****                     SET_BIT(GPIOB->BSRR, GPIO_BSRR_BS5);
+ 328              		.loc 1 152 21 view .LVU92
+ 329 01ba 02F50062 		add	r2, r2, #2048
+ 330 01be 9369     		ldr	r3, [r2, #24]
+ 331 01c0 43F00103 		orr	r3, r3, #1
+ 332 01c4 9361     		str	r3, [r2, #24]
+ 153:Core/Src/main.c **** 
+ 333              		.loc 1 153 21 view .LVU93
+ 334 01c6 A2F58062 		sub	r2, r2, #1024
+ 335 01ca 9369     		ldr	r3, [r2, #24]
+ 336 01cc 43F02003 		orr	r3, r3, #32
+ 337 01d0 9361     		str	r3, [r2, #24]
+ 338 01d2 46E7     		b	.L8
+ 339              	.L18:
+ 184:Core/Src/main.c ****             }
+ 340              		.loc 1 184 28 is_stmt 0 view .LVU94
+ 341 01d4 B946     		mov	r9, r7
+ 342              	.LVL20:
+  38:Core/Src/main.c ****             delay_ms(500); // Задержка для предотвращения дребезга
+ 343              		.loc 1 38 25 view .LVU95
+ 344 01d6 0127     		movs	r7, #1
+ 345 01d8 4CE7     		b	.L5
+ 346              	.L28:
+ 347 01da 00BF     		.align	2
+ 348              	.L27:
+ 349 01dc 00000240 		.word	1073872896
+ 350 01e0 00080240 		.word	1073874944
+ 351              	.LBE3:
+ 352              		.cfi_endproc
+ 353              	.LFE130:
+ 355              		.text
+ 356              	.Letext0:
+ 357              		.file 2 "C:/Tools/xpack-arm-none-eabi-gcc-13.2.1-1.1/arm-none-eabi/include/machine/_default_types.
+ 358              		.file 3 "C:/Tools/xpack-arm-none-eabi-gcc-13.2.1-1.1/arm-none-eabi/include/sys/_stdint.h"
+ 359              		.file 4 "CMSIS/Devices/STM32F4xx/Inc/STM32F429xx/stm32f429xx.h"
+ 360              		.file 5 "Core/Src/../Inc/init.h"
+ARM GAS  C:\Users\dns\AppData\Local\Temp\cceZ7kqN.s 			page 12
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\Users\dns\AppData\Local\Temp\cceZ7kqN.s:21     .text.main:00000000 $t
+C:\Users\dns\AppData\Local\Temp\cceZ7kqN.s:27     .text.main:00000000 main
+C:\Users\dns\AppData\Local\Temp\cceZ7kqN.s:349    .text.main:000001dc $d
+
+UNDEFINED SYMBOLS
+GPIO_Init_Memory
+GPIO_Init_With_Miself_Macros
+GPIO_Init_CMSIS
+delay_ms
